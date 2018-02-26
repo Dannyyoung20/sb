@@ -12,6 +12,7 @@ class Location extends Model
      *
      * @var array
      */
+    protected $table = 'locations';
     
     protected $fillable = [
         'lat',
