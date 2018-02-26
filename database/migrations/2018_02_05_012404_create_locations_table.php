@@ -17,7 +17,7 @@ class CreateLocationsTable extends Migration
             $table->increments('id');
             $table->double('lat');
             $table->double('long');
-            $table->integar('state_id');
+            $table->integer('state_id');
             $table->timestamps();
         });
     }

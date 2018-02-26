@@ -15,9 +15,9 @@ class CreateBookedCoursesTable extends Migration
     {
         Schema::create('booked_courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integar('course_id');
-            $table->integar('tutor_id');
-            $table->integar('student_id');
+            $table->integer('course_id');
+            $table->integer('tutor_id');
+            $table->integer('student_id');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
