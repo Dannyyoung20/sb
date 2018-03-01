@@ -167,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -226,7 +226,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Clockwork' => Clockwork\Support\Laravel\Facade::class,
     ],
 
 ];
