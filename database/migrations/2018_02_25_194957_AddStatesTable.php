@@ -12,9 +12,11 @@ class AddStatesTable extends Migration
      */
     
     /**
-     *  Configured the package for the states, Visit the link below to perform the seed.
+     *  Configured the package for the states.
      *
      *  https://github.com/bodunadebiyi/Laravel-Nig-States-LocalGovt
+     * 
+     *  Seed database with:  php artisan db:seed --class=SlgTableSeeder
      */
     
     public function up()

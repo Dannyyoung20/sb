@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\User\UserResoruce;
 use Illuminate\Http\Request;
+use App\Category;
 
 class UserController extends Controller
 {
@@ -11,4 +12,5 @@ class UserController extends Controller
     {
         return new UserResource($request->user());
     }
+
 }

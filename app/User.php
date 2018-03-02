@@ -28,15 +28,37 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+     /**
+     * One to Many relationship between Wishlist.
+     *
+     * @return Model
+     */
     public function wishlists() 
     {
         return $this->hasMany('App\Wishlist');
     }
 
+
+     /**
+     * One to Many relationship between BookedCourses.
+     *
+     * @return Model
+     */
     public function bookedcourses() 
     {
         return $this->hasMany('App\BookedCourse');
     }
+    
 
+    /**
+     * One to Many relationship between Courses.
+     *
+     * @return Model
+     */
+    public function courses() 
+    {
+        return $this->belongsToMany('App\Course');
+    }
 
 }
