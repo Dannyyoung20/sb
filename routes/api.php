@@ -8,10 +8,15 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return new UserResoruce($request->user());
 });
+
+Route::group(['middleware' => 'auth:api'], function (){
+    Route::resource('/categories', 'CategoryController');
+    Route::resource('/courses', 'CourseController');
+    Route::resource('categories.courses', 'CategoryCourseController');
+});
+
+
 Route::post('/register', 'RegisterController@register');
 
 
-// Route::group(['middleware' => 'auth:api'], function (){
-//     Route::get('/user', 'UserController@getUser');
-// });
 
