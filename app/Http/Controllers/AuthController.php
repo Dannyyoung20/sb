@@ -5,11 +5,40 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Client;
 use Illuminate\Routing\Route;
 
-class RegisterController extends Controller
+class AuthController extends Controller
 {
+    public function login(Request $request)
+    {
+        $validCred = validator($request->only('username', 'password'), [
+            'username' => 'required|email|string',
+            'password' => 'required|string'
+        ]);
+
+        if ($validCred->fails()) {
+            $jsonErrorMsg = response()->json($validCred->errors()->all(), 400);
+            return Response::json($jsonErrorMsg);
+        }
+
+        $data = request()->only('username', 'password');
+        $hashPassword = Hash::make($data['password']);
+        return response($hashPassword);
+        $user = User::where('email', $data['username'])
+                        ->where('password', $hashPassword)
+                        ->get();
+
+        if ($user) {
+            return response()->json($user);
+        }
+
+        return response('Error');
+
+    }
+
     public function register(Request $request)
     {
         $valid = validator($request->only('email', 'firstname', 'password','lastname'), [
