@@ -7,6 +7,7 @@ $factory->define(App\Course::class, function (Faker $faker) {
         'title' => $faker->word,
         'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'image' => $faker->imageUrl($width = 640, $height = 480),
-        'category_id' => rand(1,10)
+        'category_id' => rand(1,10),
+        'tutor_id' => rand(1,10)
     ];
 });
