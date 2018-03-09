@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth:api'], function (){
     Route::resource('categories.courses', 'CategoryCourseController');
 });
 
+Route::post('/login', 'Auth\LoginController@login');
 
 
 
