@@ -23,7 +23,7 @@ class UserResoruce extends Resource
         ];
     }
 
-    protected function userRole(Request $request) {
+    protected function userRole($request) {
         if($this->role_id == 1)
             { 
                 return 'User'; 
