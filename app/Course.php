@@ -45,7 +45,7 @@ class Course extends Model
      * @return Model
      */
 
-    public function tutors() 
+    public function tutor() 
     {
         return $this->belongsTo('App\Tutor');
     } 

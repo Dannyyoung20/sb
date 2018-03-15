@@ -21,6 +21,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
         'phone' => $faker->phoneNumber,
-        'location_id' => rand(1,20)
+        'location_id' => rand(1,20),
+        'role_id' => rand(1, 3)
     ];
 });

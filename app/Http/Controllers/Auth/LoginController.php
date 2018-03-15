@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/oauth/token';
 
     /**
      * Create a new controller instance.
@@ -41,9 +41,11 @@ class LoginController extends Controller
     }
 
 
-    /*
-    * Custom check Credential method
-    */
+    /**
+     * Custom check Credential method
+     * 
+     * @return \App\User
+     */
     public function checkCredentials() 
     {
         $user = User::whereEmail(request('username'))->first();
@@ -59,15 +61,17 @@ class LoginController extends Controller
         return $user;
     }
 
-    /*
-    * Custom generate oauth Token method
-    */
+    /**
+     * Custom generate oauth Token method
+     * 
+     * @return Illuminate\Http\Request
+     */
     public function generateToken() 
     {
         $data = [
             'client_id' => env('CLIENT_ID', true),
             'client_secret' => env('CLIENT_SECRET', true),
-            'grant_type' => env('GRANT_TYPE', true),
+            'grant_type' => env('GRANT_TYPE', 'password'),
             'username' => request('username'),
             'password' => request('password')
         ];

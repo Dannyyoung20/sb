@@ -9,6 +9,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return new UserResoruce($request->user());
 });
 
+Route::post('/register', 'AuthController@register');
 Route::group(['middleware' => 'auth:api'], function (){
     Route::resource('/categories', 'CategoryController');
     Route::resource('categories.courses', 'CategoryCourseController');
@@ -17,7 +18,6 @@ Route::group(['middleware' => 'auth:api'], function (){
 
 Route::post('/login', 'Auth\LoginController@login');
 
-Route::post('/register', 'RegisterController@register');
 
 
 
