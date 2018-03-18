@@ -15,6 +15,7 @@ class UserResoruce extends Resource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
             'phone' => $this->phone,
@@ -23,18 +24,16 @@ class UserResoruce extends Resource
         ];
     }
 
-    protected function userRole($request) {
-        if($this->role_id == 1)
-            { 
-                return 'User'; 
-            }
-        elseif($this->role_id == 2) 
-            { 
-                return 'Tutor';
-            }
-        else{
+    protected function userRole($request) 
+    {
+        if ($this->role_id == 1) { 
+            return 'User'; 
+        }
+        elseif($this->role_id == 2) { 
+            return 'Tutor';
+        }
+        else {
             return 'Admin';
-            }
-    
+        }
     }
 }

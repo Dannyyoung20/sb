@@ -15,6 +15,12 @@ class CreateTutorsTable extends Migration
     {
         Schema::create('tutors', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->text('bio');
+            $table->string('phone');
             $table->integer('location_id')->unsigned();
             $table->integer('course_id')->unsigned();
             $table->rememberToken();

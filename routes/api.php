@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Resources\User\UserResoruce;
 use Illuminate\Http\Request;
 
@@ -14,6 +13,7 @@ Route::group(['middleware' => 'auth:api'], function (){
     Route::resource('/categories', 'CategoryController');
     Route::resource('categories.courses', 'CategoryCourseController');
     Route::resource('/courses', 'CourseController');
+    Route::post('/course/booked', 'CourseController@bookCourse');
 });
 
 Route::post('/login', 'Auth\LoginController@login');

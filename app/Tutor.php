@@ -13,7 +13,15 @@ class Tutor extends Model
      */
 
     protected $fillable = [
-        'firstname', 'lastname', 'email', 'password', 'phone'
+        'firstname', 
+        'lastname',
+        'email', 
+        'password', 
+        'bio', 
+        'phone', 
+        'location_id', 
+        'course_id', 
+        'remember_token'
     ];
 
     /**
