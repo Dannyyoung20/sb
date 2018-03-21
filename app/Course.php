@@ -34,7 +34,7 @@ class Course extends Model
      * @return Model
      */
 
-    public function users() 
+    public function user() 
     {
         return $this->belongsToMany('App\User');
     }
