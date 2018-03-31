@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\BookedCourse;
 use Illuminate\Http\Request;
+use Carbon;
 
 class CourseController extends Controller
 {
@@ -27,6 +28,7 @@ class CourseController extends Controller
         $booked->course_id = $request->course_id;
         $booked->tutor_id = $request->tutor_id;
         $booked->student_id = $request->student_id;
+        $booked->start_date = Carbon::now();
 
         $booked->save();
 
