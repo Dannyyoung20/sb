@@ -12,30 +12,75 @@ use Illuminate\Routing\Route;
 
 class TutorAuthController extends Controller
 {
-    public function login(Request $request)
+    /**
+     * Custom check Credential method
+     * 
+     * @return \App\User
+     */
+    public function checkCredentials() 
     {
-        $validCred = validator($request->only('username', 'password'), [
-            'username' => 'required|email|string',
-            'password' => 'required|string'
-        ]);
+        // $tutor = Tutor::whereEmail(request('username'))->first();
+        $tutor = Tutor::where('email', request('username'))->first();
+        dd($tutor);
+        if (! $tutor || ! Hash::check(request('password'), $tutor->password)) {
+            return response()->json([
+                'error' => 'Incorrect email or password',
+                'status' => 422
+            ], 422);
+        } 
+        // Add more checks in the future
 
-        if ($validCred->fails()) {
-            $jsonErrorMsg = response()->json($validCred->errors()->all(), 400);
-            return Response::json($jsonErrorMsg);
-        }
+        return $tutor;
+    }
 
-        $tutor = Tutor::whereEmail(request('username'))->first();
+    /**
+     * Custom generate oauth Token method
+     * 
+     * @return Illuminate\Http\Request
+     */
+    public function generateToken() 
+    {
+        $data = [
+            'client_id' => env('CLIENT_ID', true),
+            'client_secret' => env('CLIENT_SECRET', true),
+            'grant_type' => env('GRANT_TYPE', 'password'),
+            'username' => request('username'),
+            'password' => request('password')
+        ];
+    
+        $request = Request::create('oauth/token', 'POST', $data);
+        return $request;
+    }
 
-        $data = request()->only('username', 'password');
+    /*
+    * Custom Login method
+    */
+    public function login() 
+    {
+        $tutor = $this->checkCredentials();
 
-        if (! $tutor || ! Hash::check($data['password'], $tutor->password)) {
+        $request = $this->generateToken();
+        
+        $response = app()->handle($request);
+
+        // Check if the request was successful
+        if ($response->getStatusCode() != 200) {
             return response()->json([
                 'error' => 'Incorrect email or password',
                 'status' => 422
             ], 422);
         }
-        return response()->json($tutor);
 
+        // Get the data from the response
+        $data = json_decode($response->getContent());
+
+        // Format the final response in a desirable format
+        return response()->json([
+            'access_token' => $data->access_token,
+            'expires_in' => $data->expires_in,
+            'user' => $tutor,
+            'status' => 200
+        ]);
     }
 
     public function register(Request $request)
