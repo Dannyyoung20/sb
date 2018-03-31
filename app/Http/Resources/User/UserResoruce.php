@@ -19,21 +19,7 @@ class UserResoruce extends Resource
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
             'phone' => $this->phone,
-            'email' => $this->email,
-            'role'  => $this->userRole($request->role_id)
+            'email' => $this->email
         ];
-    }
-
-    protected function userRole($request) 
-    {
-        if ($this->role_id == 1) { 
-            return 'User'; 
-        }
-        elseif($this->role_id == 2) { 
-            return 'Tutor';
-        }
-        else {
-            return 'Admin';
-        }
     }
 }
