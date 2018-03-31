@@ -22,6 +22,5 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
         'phone' => $faker->phoneNumber,
         'location_id' => rand(1,20),
-        'role_id' => rand(1, 3)
     ];
 });
