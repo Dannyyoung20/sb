@@ -18,6 +18,7 @@ class CreateBookedCoursesTable extends Migration
             $table->integer('course_id');
             $table->integer('tutor_id');
             $table->integer('student_id');
+            $table->string('slug');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();

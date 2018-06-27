@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -48,7 +48,7 @@ class LoginController extends Controller
      */
     public function checkCredentials() 
     {
-        $user = User::whereEmail(request('username'))->first();
+        $user = User::whereEmail(request('email'))->first();
     
         if (! $user || ! Hash::check(request('password'), $user->password)) {
             return response()->json([
@@ -72,7 +72,7 @@ class LoginController extends Controller
             'client_id' => env('CLIENT_ID', true),
             'client_secret' => env('CLIENT_SECRET', true),
             'grant_type' => env('GRANT_TYPE', 'password'),
-            'username' => request('username'),
+            'username' => request('email'),
             'password' => request('password')
         ];
     

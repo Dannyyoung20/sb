@@ -20,7 +20,9 @@ class CreateTutorsTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->text('bio');
+            $table->string('image')->nullable();
             $table->string('phone');
+            $table->string('slug');
             $table->integer('location_id')->unsigned();
             $table->integer('course_id')->unsigned();
             $table->rememberToken();

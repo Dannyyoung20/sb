@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->text('description');
             $table->string('image')->nullable();
             $table->integer('tutor_id')->unsigned();
+            $table->string('slug');
             $table->timestamps();
         });
     }

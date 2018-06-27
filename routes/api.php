@@ -9,10 +9,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:api'], function (){
-    Route::resource('/categories', 'CategoryController');
-    Route::resource('categories.courses', 'CategoryCourseController');
-    Route::resource('/courses', 'CourseController');
-    Route::post('/course/booked', 'CourseController@bookCourse');
+    Route::resource('/categories', 'Category\CategoryController');
+    Route::resource('categories.courses', 'Category\CategoryCourseController');
+    Route::resource('/courses', 'Course\CourseController');
+    Route::post('/course/booked', 'Course\CourseController@bookCourse');
 });
 
 // User Auth Route
@@ -20,6 +20,6 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::post('/register', 'AuthController@register');
 
 // Tutor Auth Route
-Route::post('/login/tutor', 'TutorAuthController@login');
-Route::post('/register/tutor', 'TutorAuthController@register');
+Route::post('/login/tutor', 'Tutor\TutorAuthController@login');
+Route::post('/register/tutor', 'Tutor\TutorAuthController@register');
 
